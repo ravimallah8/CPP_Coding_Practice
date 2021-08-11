@@ -18,24 +18,23 @@ int main()
 	int count = 0;	
 	for (int i = 0; i < n; i++){
 		vector <int> current;
-		current[0] = intervals[i][0];
-		current[1] = intervals[i][1];
-		for (int j = i+1; j < n; i++){
-			if (current[0] < intervals[j][0])
+		current.push_back(intervals[i][0]);
+		current.push_back(intervals[i][1]);
+		for (int j = i+1; j < n; j++){
+			if (current[1] < intervals[j][0])
 				break;
 			else{
 				current[1] = intervals[j][1];
+				i++;
 			}
 		}
-		merge[count] = vector<int> (2);
-		merge[count][0] = current[0];
-		merge[count][1] = current[1];
+		merge.push_back(current);
 		count++;
 	}
 	cout << "[";
 	for (int i = 0; i < merge.size(); i++){
 		cout << "[ " << merge[i][0] << ", ";
-		cout << merge[i][1] << "] ";
+		cout << merge[i][1] << "], ";
 	}
 	cout << "]";
 	return 0;
